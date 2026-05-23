@@ -8,12 +8,13 @@ const useForm = () => {
     password: "",
     confirmPassword: "",
   });
+  const [errors, setErrors] = useState({});
   const handleSubmit = (e) => {
     e.preventDefault();
     try {
-      const result = formValidationSchema.parse(formData);
+      const result = formValidationSchema.safeParse(formData);
       if (!result.success) {
-      console.log(result.error.format());
+      setErrors(result.error.flatten().fieldErrors);
       return;
     }
     console.log("Form data is valid:", result); 
@@ -27,6 +28,6 @@ const useForm = () => {
         return{...prevData,[name]: value}
     })
   }
-  return { handleSubmit, handleChange, formData };
+  return { handleSubmit, handleChange, formData , errors };
 };
 export default useForm;
