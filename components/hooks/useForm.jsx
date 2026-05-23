@@ -8,6 +8,7 @@ const useForm = () => {
     password: "",
     confirmPassword: "",
   });
+  const [result,setResult]= useState(null);
   const [errors, setErrors] = useState({});
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -17,7 +18,9 @@ const useForm = () => {
       setErrors(result.error.flatten().fieldErrors);
       return;
     }
-    console.log("Form data is valid:", result); 
+    console.log("Form data is valid:", result);
+    setResult(result);
+    setErrors({});  
     } catch (error) {
       console.error("Form validation error:", error);
     }
@@ -28,6 +31,6 @@ const useForm = () => {
         return{...prevData,[name]: value}
     })
   }
-  return { handleSubmit, handleChange, formData , errors };
+  return { handleSubmit, handleChange, formData , errors , result};
 };
 export default useForm;

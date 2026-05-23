@@ -2,7 +2,7 @@
 import useForm from "@/components/hooks/useForm";
 
 const FormPage = () => {
-  const { handleSubmit, handleChange, formData, errors } = useForm();
+  const { handleSubmit, handleChange, formData, errors, result } = useForm();
 
   return (
     <div className="max-w-lg mx-auto my-10 rounded-2xl border border-slate-200 bg-white p-6 shadow-lg shadow-slate-200/60">
@@ -25,8 +25,10 @@ const FormPage = () => {
             value={formData.name}
             onChange={handleChange}
             className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-slate-900 placeholder-slate-400 shadow-sm outline-none transition focus:border-sky-500 focus:ring-4 focus:ring-sky-100"
-          /> 
-          {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name[0]}</p>}
+          />
+          {errors.name && (
+            <p className="text-red-500 text-sm mt-1">{errors.name[0]}</p>
+          )}
         </div>
 
         <div>
@@ -88,7 +90,9 @@ const FormPage = () => {
             className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-slate-900 placeholder-slate-400 shadow-sm outline-none transition focus:border-sky-500 focus:ring-4 focus:ring-sky-100"
           />
           {errors.confirmPassword && (
-            <p className="text-red-500 text-sm mt-1">{errors.confirmPassword[0]}</p>
+            <p className="text-red-500 text-sm mt-1">
+              {errors.confirmPassword[0]}
+            </p>
           )}
         </div>
 
@@ -101,6 +105,11 @@ const FormPage = () => {
           </button>
         </div>
       </form>
+      {result && (
+        <p className="text-green-500 text-sm mt-1">
+          Form submitted successfully!
+        </p>
+      )}
     </div>
   );
 };
