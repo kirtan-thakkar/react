@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import formValidationSchema from "@/validation/zod";
+import {formValidationSchema} from "@/validation/zod";
 const useForm = () => {
   const [formData, setFormData] = useState({
     name: "",
@@ -11,9 +11,12 @@ const useForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     try {
-      formValidationSchema.parse(formData);
-      // If validation passes, you can proceed with form submission logic here
-      console.log("Form data is valid:", formData);
+      const result = formValidationSchema.parse(formData);
+      if (!result.success) {
+      console.log(result.error.format());
+      return;
+    }
+    console.log("Form data is valid:", result); 
     } catch (error) {
       console.error("Form validation error:", error);
     }
@@ -24,6 +27,6 @@ const useForm = () => {
         return{...prevData,[name]: value}
     })
   }
+  return { handleSubmit, handleChange, formData };
 };
-
-export { handleSubmit, formData, handleChange, useForm };
+export default useForm;
