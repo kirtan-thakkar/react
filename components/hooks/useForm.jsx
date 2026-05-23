@@ -18,6 +18,12 @@ const useForm = () => {
       console.error("Form validation error:", error);
     }
   };
+  const handleChange = (e)=>{
+    const { name, value} = e.target;
+    setFormData((prevData)=>{
+        return{...prevData,[name]: value}
+    })
+  }
 };
 
-export { handleSubmit, formData };
+export { handleSubmit, formData, handleChange, useForm };

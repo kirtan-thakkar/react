@@ -1,5 +1,6 @@
- 
+import {useForm} from "../hooks/useForm";
 const formPage = ()=>{
+    const {handleSubmit, formData} = useForm();
     
     return(
         <div>
