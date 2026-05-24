@@ -3,14 +3,13 @@
 import Image from "next/image";
 import useProduct from "./hooks/useProduct";
 const GoodData = () => {
-    const {products} = useProduct();
+  const {products} = useProduct();
   return (
     <>
       <div className="text-center text-2xl font-semibold text-neutral-900 text-shadow-md bg-red-200 mb-12">
         <h1>From here the Better adn optimised code quality is present</h1>
       </div>
-
-
+      
       <div className="flex flex-wrap h-48 w-full justify-center items-start gap-6 ">
         {products.map((item) => (
           <div
