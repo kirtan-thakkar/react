@@ -13,7 +13,7 @@ const useForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     try {
-      const result = formValidationSchema.safeParse(formData);
+      const result = formValidationSchema.safeParse(formData); // safeParse does not throw an error, it returns an object with sucess and error properties!
       if (!result.success) {
       setErrors(result.error.flatten().fieldErrors);
       return;
